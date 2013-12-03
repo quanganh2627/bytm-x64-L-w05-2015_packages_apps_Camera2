@@ -432,9 +432,8 @@ public class CameraActivity extends Activity
                                     if (mPendingDeletion) {
                                         performDeletion();
                                     }
-                                } else {
-                                    updateActionBarMenu(dataID);
                                 }
+                                updateActionBarMenu(dataID);
 
                                 Uri contentUri = currentData.getContentUri();
                                 if (contentUri == null) {
@@ -650,30 +649,31 @@ public class CameraActivity extends Activity
 
         int supported = 0;
 
-        switch (type) {
-            case LocalData.LOCAL_IMAGE:
-                supported |= SUPPORT_DELETE | SUPPORT_ROTATE | SUPPORT_INFO
-                        | SUPPORT_CROP | SUPPORT_SETAS | SUPPORT_EDIT
-                        | SUPPORT_SHARE | SUPPORT_SHOW_ON_MAP;
-                break;
-            case LocalData.LOCAL_VIDEO:
-                supported |= SUPPORT_DELETE | SUPPORT_INFO | SUPPORT_SHARE;
-                break;
-            case LocalData.LOCAL_PHOTO_SPHERE:
-                supported |= SUPPORT_DELETE | SUPPORT_ROTATE | SUPPORT_INFO
-                        | SUPPORT_CROP | SUPPORT_SETAS | SUPPORT_EDIT
-                        | SUPPORT_SHARE | SUPPORT_SHOW_ON_MAP;
-                break;
-            case LocalData.LOCAL_360_PHOTO_SPHERE:
-                supported |= SUPPORT_DELETE | SUPPORT_ROTATE | SUPPORT_INFO
-                        | SUPPORT_CROP | SUPPORT_SETAS | SUPPORT_EDIT
-                        | SUPPORT_SHARE | SUPPORT_SHARE_PANORAMA360
-                        | SUPPORT_SHOW_ON_MAP;
-                break;
-            default:
-                break;
+        if (dataID > 0) {
+            switch (type) {
+                case LocalData.LOCAL_IMAGE:
+                    supported |= SUPPORT_DELETE | SUPPORT_ROTATE | SUPPORT_INFO
+                            | SUPPORT_CROP | SUPPORT_SETAS | SUPPORT_EDIT
+                            | SUPPORT_SHARE | SUPPORT_SHOW_ON_MAP;
+                    break;
+                case LocalData.LOCAL_VIDEO:
+                    supported |= SUPPORT_DELETE | SUPPORT_INFO | SUPPORT_SHARE;
+                    break;
+                case LocalData.LOCAL_PHOTO_SPHERE:
+                    supported |= SUPPORT_DELETE | SUPPORT_ROTATE | SUPPORT_INFO
+                            | SUPPORT_CROP | SUPPORT_SETAS | SUPPORT_EDIT
+                            | SUPPORT_SHARE | SUPPORT_SHOW_ON_MAP;
+                    break;
+                case LocalData.LOCAL_360_PHOTO_SPHERE:
+                    supported |= SUPPORT_DELETE | SUPPORT_ROTATE | SUPPORT_INFO
+                            | SUPPORT_CROP | SUPPORT_SETAS | SUPPORT_EDIT
+                            | SUPPORT_SHARE | SUPPORT_SHARE_PANORAMA360
+                            | SUPPORT_SHOW_ON_MAP;
+                    break;
+                default:
+                    break;
+            }
         }
-
         // In secure camera mode, we only support delete operation.
         if (isSecureCamera()) {
             supported &= SUPPORT_DELETE;
