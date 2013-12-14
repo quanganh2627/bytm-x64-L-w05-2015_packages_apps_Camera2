@@ -522,7 +522,7 @@ public class VideoModule implements CameraModule,
 
     @Override
     public void onShutterButtonClick() {
-        if (mUI.collapseCameraControls() || mSwitchingCamera) return;
+        if (mUI.collapseCameraControls() || mSwitchingCamera || mCameraDevice == null) return;
 
         boolean stop = mMediaRecorderRecording;
 
@@ -783,6 +783,7 @@ public class VideoModule implements CameraModule,
     public void onPauseBeforeSuper() {
         mPaused = true;
 
+        mUI.showPreviewCover();
         if (mMediaRecorderRecording) {
             // Camera will be released in onStopVideoRecording.
             onStopVideoRecording();
