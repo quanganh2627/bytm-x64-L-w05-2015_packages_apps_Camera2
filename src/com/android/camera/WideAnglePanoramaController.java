@@ -30,6 +30,4 @@ public interface WideAnglePanoramaController {
     public void onShutterButtonClick();
 
     public void onPreviewUILayoutChange(int l, int t, int r, int b);
-
-    public int getCameraOrientation();
 }

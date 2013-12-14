@@ -431,13 +431,8 @@ public class WideAnglePanoramaUI implements
     }
 
     public void flipPreviewIfNeeded() {
-        // Rotation needed to display image correctly clockwise
-        int cameraOrientation = mController.getCameraOrientation();
-        // Display rotated counter-clockwise
-        int displayRotation = CameraUtil.getDisplayRotation(mActivity);
-        // Rotation needed to display image correctly on current display
-        int rotation = (cameraOrientation - displayRotation + 360) % 360;
-        if (rotation >= 180) {
+        if (CameraUtil.getDisplayRotation(mActivity) >= 180) {
+            // In either reverse landscape or reverse portrait
             mTextureView.setRotation(180);
         } else {
             mTextureView.setRotation(0);
