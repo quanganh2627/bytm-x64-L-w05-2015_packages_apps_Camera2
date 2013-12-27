@@ -1937,9 +1937,14 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
             if (v != mCameraView) {
                 removeView(v);
             }
-            ImageData imageData = mDataAdapter.getImageData(mViewItem[i].getId());
-            if (imageData != null) {
-                imageData.recycle();
+            try {
+                ImageData imageData = mDataAdapter.getImageData(mViewItem[i].getId());
+                if (imageData != null) {
+                    imageData.recycle();
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Caught Exception:");
+                e.printStackTrace();
             }
         }
 

@@ -48,7 +48,6 @@ class AndroidCameraManagerImpl implements CameraManager {
             AndroidCameraManagerImpl.class.getSimpleName();
 
     private Parameters mParameters;
-    private boolean mParametersIsDirty;
     private IOException mReconnectIOException;
 
     /* Messages used in CameraHandler. */
@@ -191,7 +190,6 @@ class AndroidCameraManagerImpl implements CameraManager {
                     case OPEN_CAMERA:
                         mCamera = android.hardware.Camera.open(msg.arg1);
                         if (mCamera != null) {
-                            mParametersIsDirty = true;
 
                             // Get a instance of Camera.Parameters for later use.
                             if (mParamsToSet == null) {
@@ -293,16 +291,12 @@ class AndroidCameraManagerImpl implements CameraManager {
                         return;
 
                     case SET_PARAMETERS:
-                        mParametersIsDirty = true;
                         mParamsToSet.unflatten((String) msg.obj);
                         mCamera.setParameters(mParamsToSet);
                         return;
 
                     case GET_PARAMETERS:
-                        if (mParametersIsDirty) {
-                            mParameters = mCamera.getParameters();
-                            mParametersIsDirty = false;
-                        }
+                        mParameters = mCamera.getParameters();
                         return;
 
                     case SET_PREVIEW_CALLBACK:
@@ -314,7 +308,6 @@ class AndroidCameraManagerImpl implements CameraManager {
                         return;
 
                     case REFRESH_PARAMETERS:
-                        mParametersIsDirty = true;
                         return;
 
                     default:
