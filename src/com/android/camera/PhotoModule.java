@@ -124,6 +124,7 @@ public class PhotoModule
     private boolean mPaused;
 
     private PhotoUI mUI;
+    private boolean mLocationDialogShown = false;
 
     // The activity is going to switch to the specified camera id. This is
     // needed because texture copy is done in GL thread. -1 means camera is not
@@ -397,7 +398,8 @@ public class PhotoModule
     // Prompt the user to pick to record location for the very first run of
     // camera only
     private void locationFirstRun() {
-        if (RecordLocationPreference.isSet(mPreferences)) {
+        if (RecordLocationPreference.isSet(mPreferences) || mLocationDialogShown) {
+            mLocationDialogShown = false;
             return;
         }
         if (mActivity.isSecureCamera()) return;
@@ -408,6 +410,7 @@ public class PhotoModule
             return;
         }
         mUI.showLocationDialog();
+        mLocationDialogShown = true;
     }
 
     @Override
