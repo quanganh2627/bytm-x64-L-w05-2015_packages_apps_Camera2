@@ -21,7 +21,7 @@ import android.net.Uri;
 
 public class IntentHelper {
 
-    private static final String GALLERY_PACKAGE_NAME = "com.android.gallery3d";
+    private static final String GALLERY_PACKAGE_NAME = "com.google.android.gallery3d";
     private static final String GALLERY_ACTIVITY_CLASS =
         "com.android.gallery3d.app.GalleryActivity";
 
