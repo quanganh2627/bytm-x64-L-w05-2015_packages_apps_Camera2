@@ -149,6 +149,9 @@ public class CameraDataAdapter implements LocalDataAdapter {
             // A new data.
             insertData(newData);
         }
+        if (c != null) {
+            c.close();
+        }
     }
 
     // TODO: put the database query on background thread
@@ -170,6 +173,9 @@ public class CameraDataAdapter implements LocalDataAdapter {
         } else {
             // a new data.
             insertData(newData);
+        }
+        if (c != null) {
+            c.close();
         }
     }
 
