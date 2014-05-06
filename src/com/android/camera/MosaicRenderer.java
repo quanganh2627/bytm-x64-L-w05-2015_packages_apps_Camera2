@@ -24,7 +24,11 @@ public class MosaicRenderer
 {
      static
      {
-         System.loadLibrary("jni_mosaic");
+         try {
+             System.loadLibrary("jni_mosaic_old");
+         } catch (Throwable e) {
+             System.loadLibrary("jni_mosaic");
+         }
      }
 
      /**

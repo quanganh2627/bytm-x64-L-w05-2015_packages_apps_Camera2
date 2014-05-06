@@ -30,23 +30,18 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 # If this is an unbundled build (to install seprately) then include
 # the libraries in the APK, otherwise just put them in /system/lib and
 # leave them out of the APK
-ifeq ($(strip $(USE_GMS_ALL)),true)
-#using GoogleCamera, it needs to resolve build confilct
-
+ifeq ($(FLAG_GMS_AVAILABLE),yes)
 ifneq (,$(TARGET_BUILD_APPS))
-  LOCAL_JNI_SHARED_LIBRARIES := libjni_mosaic libjni_tinyplanet_old
+  LOCAL_JNI_SHARED_LIBRARIES := libjni_mosaic_old libjni_tinyplanet
 else
-  LOCAL_REQUIRED_MODULES := libjni_mosaic libjni_tinyplanet_old
+  LOCAL_REQUIRED_MODULES := libjni_mosaic_old libjni_tinyplanet
 endif
-
 else
-
 ifneq (,$(TARGET_BUILD_APPS))
   LOCAL_JNI_SHARED_LIBRARIES := libjni_mosaic libjni_tinyplanet
 else
   LOCAL_REQUIRED_MODULES := libjni_mosaic libjni_tinyplanet
 endif
-
 endif
 
 include $(BUILD_PACKAGE)
