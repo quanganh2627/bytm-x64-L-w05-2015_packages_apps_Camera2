@@ -172,6 +172,18 @@
     <string name="pref_camera_scenemode_label_night" msgid="7764371228088101131">"夜景"</string>
     <string name="pref_camera_scenemode_label_sunset" msgid="3443610538453611123">"日落"</string>
     <string name="pref_camera_scenemode_label_party" msgid="917499272505930322">"派对"</string>
+    <!-- Scene mode labels Added by Intel -->
+    <string name="pref_camera_scenemode_label_portrait">"人像"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_landscape">"风景"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_night_portrait">"夜景人像"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_theatre">"剧院"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_beach">"沙滩"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_snow">"雪景"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_steadyphoto">"防抖"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_fireworks">"焰火"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_sports">"运动"</string><!-- Intel -->
+    <string name="pref_camera_scenemode_label_candlelight">"烛火"</string> <!-- Intel -->
+    <string name="pref_camera_scenemode_label_barcode">"二维码"</string> <!-- Intel -->
     <string name="pref_camera_countdown_label_off" msgid="3986433580620011481">"关闭倒计时器"</string>
     <string name="pref_camera_countdown_label_one" msgid="7647972711796868848">"1秒"</string>
     <string name="pref_camera_countdown_label_three" msgid="3154170918067103541">"3秒"</string>
