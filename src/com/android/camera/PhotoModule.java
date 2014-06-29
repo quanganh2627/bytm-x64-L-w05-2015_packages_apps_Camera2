@@ -1619,8 +1619,11 @@ public class PhotoModule
         // initialize focus mode
         mFocusManager.overrideFocusMode(null);
         String focus_mode = mFocusManager.getFocusMode();
-        if (mParameters.getSupportedFocusModes().contains(focus_mode))
+        List<String> supportedFocusModes =  mParameters.getSupportedFocusModes();
+        if (focus_mode != null && supportedFocusModes != null
+                && supportedFocusModes.contains(focus_mode)) {
             mParameters.setFocusMode(focus_mode);
+        }
 
         // Set picture size.
         String pictureSize = mPreferences.getString(
