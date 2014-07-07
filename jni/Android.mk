@@ -56,7 +56,12 @@ LOCAL_LDFLAGS := -llog -lGLESv2
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_MODULE    := libjni_mosaic
+ifeq ($(FLAG_GMS_AVAILABLE), yes)
+LOCAL_MODULE := libjni_mosaic_old
+else
+LOCAL_MODULE := libjni_mosaic
+endif
+
 include $(BUILD_SHARED_LIBRARY)
 
 # TinyPlanet
@@ -65,7 +70,11 @@ include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := .cc
 LOCAL_LDFLAGS   := -llog -ljnigraphics
 LOCAL_SDK_VERSION := 9
-LOCAL_MODULE    := libjni_tinyplanet
+ifeq ($(FLAG_GMS_AVAILABLE), yes)
+LOCAL_MODULE := libjni_tinyplanet_old
+else
+LOCAL_MODULE := libjni_tinyplanet
+endif
 LOCAL_SRC_FILES := tinyplanet.cc
 
 LOCAL_CFLAGS    += -ffast-math -O3 -funroll-loops
