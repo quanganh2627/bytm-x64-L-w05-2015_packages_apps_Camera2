@@ -56,11 +56,8 @@ LOCAL_LDFLAGS := -llog -lGLESv2
 
 LOCAL_MODULE_TAGS := optional
 
-ifeq ($(FLAG_GMS_AVAILABLE),yes)
-LOCAL_MODULE    := libjni_mosaic_old
-else
 LOCAL_MODULE    := libjni_mosaic
-endif
+
 include $(BUILD_SHARED_LIBRARY)
 
 # TinyPlanet
