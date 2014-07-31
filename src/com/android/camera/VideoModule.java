@@ -659,8 +659,8 @@ public class VideoModule implements CameraModule,
             if (mCameraDevice == null) {
                 return;
             }
-            readVideoPreferences();
-            resizeForPreviewAspectRatio();
+          //  readVideoPreferences();
+          //  resizeForPreviewAspectRatio();
             startPreview();
         } else {
             // preview already started
@@ -721,6 +721,9 @@ public class VideoModule implements CameraModule,
 
     private void startPreview() {
         Log.v(TAG, "startPreview");
+
+        readVideoPreferences();
+        resizeForPreviewAspectRatio();
 
         SurfaceTexture surfaceTexture = mUI.getSurfaceTexture();
         if (!mPreferenceRead || surfaceTexture == null || mPaused == true ||
