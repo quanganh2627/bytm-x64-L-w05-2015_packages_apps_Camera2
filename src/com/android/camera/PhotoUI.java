@@ -118,6 +118,7 @@ public class PhotoUI implements PieListener,
     private float mAspectRatio = 4f / 3f;
     private View mPreviewCover;
     private final Object mSurfaceTextureLock = new Object();
+    private boolean mFirstFaceDetected = false;
 
     public interface SurfaceTextureSizeChangedListener {
         public void onSurfaceTextureSizeChanged(int uncroppedWidth, int uncroppedHeight);
@@ -835,6 +836,7 @@ public class PhotoUI implements PieListener,
 
     public void clearFaces() {
         if (mFaceView != null) mFaceView.clear();
+        mFirstFaceDetected = true;
     }
 
     @Override
@@ -883,7 +885,10 @@ public class PhotoUI implements PieListener,
 
     @Override
     public void onFaceDetection(Face[] faces, CameraManager.CameraProxy camera) {
-        mFaceView.setFaces(faces);
+        if (mFirstFaceDetected)
+            mFirstFaceDetected = false;
+        else
+            mFaceView.setFaces(faces);
     }
 
     @Override
