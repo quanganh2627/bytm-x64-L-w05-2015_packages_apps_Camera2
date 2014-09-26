@@ -36,6 +36,7 @@ import android.location.Location;
 import android.media.CamcorderProfile;
 import android.media.CameraProfile;
 import android.media.MediaRecorder;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -91,6 +92,8 @@ public class VideoModule implements CameraModule,
     private static final int SCREEN_DELAY = 2 * 60 * 1000;
 
     private static final long SHUTTER_BUTTON_TIMEOUT = 500L; // 500ms
+
+    public static final String VALUE_ON = "on";
 
     /**
      * An unpublished intent flag requesting to start recording straight away
@@ -171,6 +174,9 @@ public class VideoModule implements CameraModule,
     private int mOrientation = OrientationEventListener.ORIENTATION_UNKNOWN;
 
     private int mZoomValue;  // The current zoom value.
+
+    private boolean mMeetingMode = false;
+    private AudioManager mAudioManager;
 
     private final MediaSaveService.OnMediaSavedListener mOnVideoSavedListener =
             new MediaSaveService.OnMediaSavedListener() {
@@ -980,6 +986,16 @@ public class VideoModule implements CameraModule,
             setCaptureRate(mMediaRecorder, fps);
         }
 
+        // meeting mode
+        mAudioManager = (AudioManager) mActivity.getSystemService(Context.AUDIO_SERVICE);
+        String par;
+        if (mMeetingMode == true) {
+            par = "mic_rec_profile=meeting;";
+        } else {
+            par = "mic_rec_profile=default;";
+        }
+        mAudioManager.setParameters(par);
+
         setRecordLocation();
 
         // Set output file.
@@ -1575,6 +1591,11 @@ public class VideoModule implements CameraModule,
             // If mCameraDevice is not ready then we can set the parameter in
             // startPreview().
             if (mCameraDevice == null) return;
+
+            // meeting mode setting
+            String meetingMode = mPreferences.getString(CameraSettings.KEY_VIDEO_MEETING_MODE, null);
+            mMeetingMode = VALUE_ON.equals(meetingMode);
+            Log.e(TAG, "meeting mode is " + meetingMode);
 
             boolean recordLocation = RecordLocationPreference.get(
                     mPreferences, mContentResolver);
