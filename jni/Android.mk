@@ -69,7 +69,7 @@ LOCAL_SDK_VERSION := 9
 ifeq ($(FLAG_GMS_AVAILABLE), yes)
 LOCAL_MODULE := libjni_tinyplanet_old
 else
-LOCAL_MODULE := libjni_tinyplanet
+LOCAL_MODULE := libjni_tinyplanet_old
 endif
 LOCAL_SRC_FILES := tinyplanet.cc
 
