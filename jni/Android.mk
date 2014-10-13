@@ -56,7 +56,7 @@ LOCAL_LDFLAGS := -llog -lGLESv2
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_MODULE := libjni_mosaic
+LOCAL_MODULE := libjni_mosaic_old
 
 include $(BUILD_SHARED_LIBRARY)
 
